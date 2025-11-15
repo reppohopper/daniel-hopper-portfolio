@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Projects — Daniel Hopper</title>
+  <meta name="description" content="Selected projects by Daniel Hopper: Chess Game, Go Text Expander, Unity FPS prototype." />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <style>
+    :root { --primary:#2563eb; --muted:#6b7280; }
+    main{max-width:960px;margin:0 auto}
+    .project-grid{display:grid;gap:1rem}
+    @media(min-width:768px){ .project-grid{grid-template-columns:repeat(3,1fr)} }
+    .project-card{border:1px solid #e5e7eb;padding:1rem;border-radius:.75rem}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <ul><li><strong>Daniel Hopper</strong></li></ul>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html" aria-current="page">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Projects</h1>
+    <p>Below are three projects that reflect my experience with games, tooling, and prototypes. Each project page includes technical details, challenges, and next steps.</p>
+
+    <section class="project-grid" aria-label="Project list">
+      <article class="project-card">
+        <h3><a href="chess-game.html">Chess Game</a></h3>
+        <p>Web chess prototype exploring AI decision heuristics and a simplified, approachable UI.</p>
+        <p><strong>Technologies:</strong> JavaScript, HTML5 Canvas</p>
+        <p>
+          <a href="chess-game.html">Details</a> ·
+          <a href="#" target="_blank" rel="noopener">GitHub</a> ·
+          <a href="#" target="_blank" rel="noopener">Live demo</a>
+        </p>
+      </article>
+
+      <article class="project-card">
+        <h3><a href="go-text-expander.html">Go Text Expander</a></h3>
+        <p>A compact CLI tool to expand snippets based on a YAML config — focused on reliability and cross-platform behavior.</p>
+        <p><strong>Technologies:</strong> Go</p>
+        <p>
+          <a href="go-text-expander.html">Details</a> ·
+          <a href="#" target="_blank" rel="noopener">GitHub</a>
+        </p>
+      </article>
+
+      <article class="project-card">
+        <h3><a href="unity-fps.html">Unity FPS Prototype</a></h3>
+        <p>First-person prototype used to validate movement feel, basic AI, and level flow for a potential gameplay loop.</p>
+        <p><strong>Technologies:</strong> Unity (C#)</p>
+        <p>
+          <a href="unity-fps.html">Details</a> ·
+          <a href="#" target="_blank" rel="noopener">Repo</a>
+        </p>
+      </article>
+    </section>
+  </main>
+
+  <footer style="max-width:960px;margin:2rem auto 0;color:var(--muted);">
+    <small>&copy; <span id="year"></span> Daniel Hopper</small>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
