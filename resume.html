@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Resume — Daniel Hopper</title>
+  <meta name="description" content="Resume and CV for Daniel Hopper — download or view online." />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <style>main{max-width:960px;margin:0 auto}</style>
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <ul><li><strong>Daniel Hopper</strong></li></ul>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="resume.html" aria-current="page">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Resume</h1>
+    <p><a href="assets/Daniel-Hopper-Resume.pdf" download role="button">Download PDF</a></p>
+
+    <section>
+      <h2>Professional Summary</h2>
+      <p>Software engineer and game developer with experience building prototypes and tools in Unity, Go, and modern web technologies. Focused on shipping practical solutions, clear documentation, and improving developer workflows.</p>
+    </section>
+
+    <section>
+      <h2>Skills</h2>
+      <ul>
+        <li>Languages: C#, Go, JavaScript, Python</li>
+        <li>Tools & Frameworks: Unity, Git, Docker, HTML/CSS</li>
+        <li>Areas: Gameplay systems, tooling, backend utilities</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Experience (Selected)</h2>
+      <p><strong>Independent Developer</strong> — Personal projects and prototypes (Dates)</p>
+      <ul>
+        <li>Designed and implemented multiple prototypes in Unity to validate gameplay and movement.</li>
+        <li>Built a cross-platform CLI tool in Go for snippet expansion and automation.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Education</h2>
+      <p><strong>Computer Science coursework</strong> — Relevant courses: data structures, algorithms, systems programming.</p>
+    </section>
+  </main>
+
+  <footer style="max-width:960px;margin:2rem auto 0;color:#6b7280;"><small>&copy; <span id="year"></span> Daniel Hopper</small></footer>
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>

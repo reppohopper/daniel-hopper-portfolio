@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Unity FPS Prototype — Daniel Hopper</title>
+  <meta name="description" content="Unity FPS prototype — movement, AI, and level flow by Daniel Hopper." />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <style>main{max-width:960px;margin:0 auto}</style>
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <ul><li><strong>Daniel Hopper</strong></li></ul>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html" aria-current="page">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Unity FPS Prototype</h1>
+    <p><strong>Role:</strong> Prototype lead · <strong>Tech:</strong> Unity (C#)</p>
+
+    <h2>Overview</h2>
+    <p>Small prototype focused on validating player feel and basic AI encounters. Includes modular player controller, simple cover-aware AI, and small test levels for tune iterations.</p>
+
+    <h2>Technical Implementation</h2>
+    <ul>
+      <li>Player controller with configurable acceleration, friction, and head bob parameters.</li>
+      <li>AI using navigation meshes with behavior trees for simple state-driven actions (patrol, chase, search).</li>
+      <li>Level flow uses scriptable objects to configure spawn waves and objectives.</li>
+    </ul>
+
+    <h2>Challenges & Solutions</h2>
+    <p>Tuning player feel across input devices—solved by exposing multiple parameters and logging telemetry during playtests to find balanced defaults.</p>
+
+    <h2>Future Enhancements</h2>
+    <ul>
+      <li>Polish movement interpolation and add weapon recoil/haptics.</li>
+      <li>Integrate networked multiplayer stub for basic sync testing.</li>
+    </ul>
+
+    <p><a href="projects.html">&larr; Back to Projects</a></p>
+  </main>
+
+  <footer style="max-width:960px;margin:2rem auto 0;color:#6b7280;"><small>&copy; <span id="year"></span> Daniel Hopper</small></footer>
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>

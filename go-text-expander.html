@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Go Text Expander — Daniel Hopper</title>
+  <meta name="description" content="Go Text Expander — CLI utility by Daniel Hopper." />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <style>main{max-width:960px;margin:0 auto}.code-snippet{background:#f9fafb;padding:1rem;border-radius:.5rem;border:1px solid #eee;overflow:auto}</style>
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <ul><li><strong>Daniel Hopper</strong></li></ul>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html" aria-current="page">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Go Text Expander</h1>
+    <p><strong>Role:</strong> Solo developer · <strong>Tech:</strong> Go</p>
+
+    <h2>Overview</h2>
+    <p>Go Text Expander is a cross-platform command-line utility that expands user-defined snippets from a YAML configuration. The goal is a single small binary with predictable behavior across platforms and minimal external dependencies.</p>
+
+    <h2>Problem & Objectives</h2>
+    <p>Many text expansion tools are platform-specific or require privileged background services. This tool aims to give developers a simple, portable way to expand snippets inside terminals and scripts with an easy config format.</p>
+
+    <h2>Technical Implementation</h2>
+    <ul>
+      <li>Single binary built with Go for Windows/macOS/Linux support.</li>
+      <li>Config parsing using YAML; snippet tokens replaced with content, supporting placeholders and simple transforms.</li>
+      <li>Safe IO handling with explicit tests for edge cases (unicode, newline normalization).</li>
+    </ul>
+
+    <h2>Key Code Snippet</h2>
+    <pre class="code-snippet"><code>// example snippet expansion (conceptual)
+func expandSnippet(tmpl string, vars map[string]string) string {
+    // naive placeholder replacement
+    for k, v := range vars {
+        tmpl = strings.ReplaceAll(tmpl, "{{"+k+"}}", v)
+    }
+    return tmpl
+}
+    </code></pre>
+
+    <h2>Challenges & Solutions</h2>
+    <p>Handling platform-specific clipboard and key events was out of scope; the solution focuses on piping and file-backed workflows that work reliably in automation contexts.</p>
+
+    <h2>Future Enhancements</h2>
+    <ul>
+      <li>Optional daemon mode with secure clipboard integration.</li>
+      <li>Snippet sharing and versioned configs.</li>
+    </ul>
+
+    <p><a href="projects.html">&larr; Back to Projects</a></p>
+  </main>
+
+  <footer style="max-width:960px;margin:2rem auto 0;color:#6b7280;"><small>&copy; <span id="year"></span> Daniel Hopper</small></footer>
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
