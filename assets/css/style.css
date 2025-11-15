@@ -1,0 +1,6 @@
+/* Small custom site tweaks (Pico provides the base) */
+:root { --primary: #2563eb; --muted: #6b7280; --maxw: 960px; }
+body { padding: 1rem; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+header.site-header nav ul { display:flex; gap:1rem; align-items:center; }
+a { color: var(--primary); }
+.project-card img { max-width:100%; border-radius:6px; }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Daniel Hopper — Software Engineer & Game Developer</title>
+  <meta name="description" content="Portfolio of Daniel Hopper — games, tools, and prototypes across Unity, Go, and web technologies." />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <style>
+    :root { --primary: #2563eb; --muted:#6b7280; }
+    header.site-header { margin-bottom: 1.5rem; }
+    main { max-width: 960px; margin: 0 auto; }
+    .hero { display:grid; gap:1.5rem; }
+    @media(min-width:768px){ .hero{ grid-template-columns:2fr 1fr; align-items:center } }
+    .project-grid { display:grid; gap:1rem; }
+    @media(min-width:768px){ .project-grid{ grid-template-columns:repeat(3,1fr); } }
+    .project-card{ border-radius:.75rem; border:1px solid #e5e7eb; padding:1rem; height:100% }
+    img.profile { max-width:220px; border-radius:999px; display:block; margin:0 auto; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <ul><li><strong>Daniel Hopper</strong></li></ul>
+      <ul>
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <h1>Software Engineer & Game Developer</h1>
+        <p>Hello — I’m Daniel. I design and build games, developer tools, and prototypes that focus on clarity, performance, and fun. I work across Unity for gameplay and C#/shader work, Go for small cross-platform utilities, and modern web stacks for demos and documentation.</p>
+        <p>My work emphasizes practical engineering—clear architecture, testable components, and concise documentation—so teams can iterate quickly and ship reliably.</p>
+        <p>
+          <a href="projects.html" role="button">View projects</a>
+          <a href="contact.html" role="button" class="secondary">Contact</a>
+        </p>
+      </div>
+
+      <div>
+        <img src="assets/profile.jpg" alt="Professional photo of Daniel Hopper" class="profile" />
+        <p style="text-align:center; color:var(--muted); margin-top:.5rem;">Daniel Hopper — Seattle, WA</p>
+      </div>
+    </section>
+
+    <section style="margin-top:2rem;">
+      <h2>Featured Projects</h2>
+      <div class="project-grid">
+        <article class="project-card">
+          <h3><a href="chess-game.html">Chess Game</a></h3>
+          <p>Web-based chess prototype exploring AI and UX for casual players.</p>
+          <p><strong>Tech:</strong> JavaScript, HTML5 Canvas</p>
+        </article>
+
+        <article class="project-card">
+          <h3><a href="go-text-expander.html">Go Text Expander</a></h3>
+          <p>Lightweight cross-platform CLI text-expansion tool written in Go.</p>
+          <p><strong>Tech:</strong> Go, YAML</p>
+        </article>
+
+        <article class="project-card">
+          <h3><a href="unity-fps.html">Unity FPS Prototype</a></h3>
+          <p>First-person prototype with player controller and simple AI behaviors.</p>
+          <p><strong>Tech:</strong> Unity (C#)</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer style="max-width:960px; margin:2rem auto 0; color:var(--muted);">
+    <small>&copy; <span id="year"></span> Daniel Hopper — <a href="resume.html">Resume</a></small>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

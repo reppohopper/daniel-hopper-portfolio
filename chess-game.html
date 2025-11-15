@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Chess Game — Daniel Hopper</title>
+  <meta name="description" content="Chess Game — AI-driven web prototype by Daniel Hopper." />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <style>main{max-width:960px;margin:0 auto}.code-snippet{background:#f9fafb;padding:1rem;border-radius:.5rem;border:1px solid #eee;overflow:auto}</style>
+</head>
+<body>
+  <header class="site-header">
+    <nav>
+      <ul><li><strong>Daniel Hopper</strong></li></ul>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html" aria-current="page">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1>Chess Game</h1>
+    <p><strong>Role:</strong> Solo developer · <strong>Tech:</strong> JavaScript, HTML5 Canvas</p>
+    <p>
+      A web-based chess prototype focused on approachable UI and experimenting with AI heuristics that balance performance and quality of moves for casual play.
+    </p>
+
+    <h2>Problem & Objectives</h2>
+    <p>The goal was to create a lightweight chess client that runs entirely in the browser, providing a responsive UI and an AI opponent with configurable depth and heuristics. Objectives: fast move generation, clear board visuals, and a friendly UX for new players.</p>
+
+    <h2>Technical Implementation</h2>
+    <ul>
+      <li>Engine: Minimax search with alpha-beta pruning implemented in JS for client-side play.</li>
+      <li>Rendering: HTML5 Canvas for efficient board redraws and animated piece movement.</li>
+      <li>State: Immutable move history to enable undo/redo and simple replay.</li>
+    </ul>
+
+    <h2>Challenges & Solutions</h2>
+    <p>Performance at deeper search depths in JS—addressed by iterative deepening and move-order heuristics. Another challenge was designing a clear, non-intimidating UI; solved by simplifying legal move highlights and offering a practice mode that suggests moves.</p>
+
+    <h2>Key Code Snippet</h2>
+    <pre class="code-snippet"><code>// Simple alpha-beta outline (illustrative)
+function alphaBeta(node, depth, alpha, beta, maximizingPlayer) {
+  if (depth === 0 || node.isTerminal()) return evaluate(node);
+  let moves = node.generateMoves();
+  for (let m of moves) {
+    node.apply(m);
+    let score = -alphaBeta(node, depth-1, -beta, -alpha, !maximizingPlayer);
+    node.undo(m);
+    if (score >= beta) return beta;
+    if (score > alpha) alpha = score;
+  }
+  return alpha;
+}
+    </code></pre>
+
+    <h2>Results & Impact</h2>
+    <p>Usable, compact web demo that runs comfortably at shallow search depths on mobile and desktop. Good baseline for later server-side engine integration.</p>
+
+    <h2>Future Enhancements</h2>
+    <ul>
+      <li>Connect to a stronger engine server-side (Stockfish) for advanced play.</li>
+      <li>Save/load PGN; add puzzles and training modes.</li>
+    </ul>
+
+    <p><a href="projects.html">&larr; Back to Projects</a></p>
+  </main>
+
+  <footer style="max-width:960px;margin:2rem auto 0;color:var(--muted);">
+    <small>&copy; <span id="year"></span> Daniel Hopper</small>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
