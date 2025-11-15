@@ -1,6 +1,70 @@
-/* Small custom site tweaks (Pico provides the base) */
-:root { --primary: #2563eb; --muted: #6b7280; --maxw: 960px; }
-body { padding: 1rem; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
-header.site-header nav ul { display:flex; gap:1rem; align-items:center; }
+/* Global layout & safe gutters to avoid edge-to-edge content on narrow screens */
+:root { --primary: #2563eb; --muted: #6b7280; --maxw: 960px; --gutter: 1rem; }
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+/* Keep a consistent safe-area gutter on all pages */
+body {
+  padding-inline-start: calc(var(--gutter) + env(safe-area-inset-left));
+  padding-inline-end:   calc(var(--gutter) + env(safe-area-inset-right));
+  padding-block-start: var(--gutter);
+  padding-block-end:   var(--gutter);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg, #fff);
+  color: var(--fg, #111);
+}
+
+/* Constrain primary content and center it */
+main, header.site-header, footer {
+  max-width: var(--maxw);
+  margin-left: auto;
+  margin-right: auto;
+  padding-inline: calc(var(--gutter)); /* inner padding so content never hugs the edges */
+}
+
+/* Add a subtle panel/border around main content so things never feel edge-to-edge */
+header.site-header,
+main,
+footer {
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.06); /* subtle border that works in light and dark contexts */
+  box-shadow: 0 1px 0 rgba(0,0,0,0.02) inset;
+  padding: 1rem 1.25rem;
+  background: transparent; /* keep page background unless you want a boxed background */
+}
+
+/* Small extra top spacing for header so nav isn't crowded */
+header.site-header { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+
+/* Header/nav tweaks */
+header.site-header nav { align-items: center; }
+header.site-header nav ul { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* Hero and profile image sizing */
+.hero { display: grid; gap: 1.5rem; }
+@media (min-width: 768px) { .hero { grid-template-columns: 2fr 1fr; align-items: center; } }
+img.profile { max-width: 220px; border-radius: 999px; display: block; margin: 0 auto; width: min(220px, 40vw); height: auto; }
+
+/* Project grid/card spacing */
+.project-grid { display: grid; gap: 1rem; }
+@media (min-width: 768px) { .project-grid { grid-template-columns: repeat(3, 1fr); } }
+.project-card { border-radius: .75rem; border: 1px solid #e5e7eb; padding: 1rem; height: 100%; overflow: hidden; }
+
+/* Ensure forms and controls have breathing room */
+form input, form textarea { width: 100%; padding: .5rem; margin: .3rem 0 1rem; border: 1px solid #ccc; border-radius: 4px; }
+button { background: var(--primary); color: #fff; border: none; padding: .6rem 1rem; border-radius: 4px; cursor: pointer; }
+
+/* Make sure elements don't touch viewport edges on very small devices */
+@media (max-width: 420px) {
+  body { padding-inline: calc(var(--gutter) * 0.75); }
+  main, header.site-header, footer { padding-inline: calc(var(--gutter) * 0.5); }
+  img.profile { width: 36vw; }
+}
+
+/* Small visual polish */
 a { color: var(--primary); }
-.project-card img { max-width:100%; border-radius:6px; }
+
+/* Legacy fallback rules (preserve previous selectors) */
+.header-nav { }
+.project-card img { max-width: 100%; border-radius: 6px; }
