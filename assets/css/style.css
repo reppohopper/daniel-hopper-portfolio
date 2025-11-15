@@ -11,8 +11,8 @@ body {
   padding-block-start: var(--gutter);
   padding-block-end:   var(--gutter);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: var(--bg, #fff);
-  color: var(--fg, #111);
+  /* background: var(--bg, #fff); */
+  /* color: var(--fg, #111); */
 }
 
 /* Constrain primary content and center it */
