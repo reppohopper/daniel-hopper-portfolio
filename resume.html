@@ -3,61 +3,163 @@
 <head>
   <meta charset="utf-8" />
   <title>Resume — Daniel Hopper</title>
-  <meta name="description" content="Resume and CV for Daniel Hopper — download or view online." />
+  <meta name="description" content="Online resume for Daniel Hopper — software developer with experience in large-scale automation and IT services leadership." />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
   <!-- Central site styles (single canonical CSS for all pages) -->
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <header class="site-header">
-    <nav>
-      <ul><li><strong>Daniel Hopper</strong></li></ul>
+  <header id="site-header" class="site-header"></header>
+
+  <main style="max-width: 960px; margin: 0 auto;">
+    <h1>Online Resume</h1>
+
+    <!-- Contact / Header -->
+    <section aria-label="Contact information">
+      <h2>Contact</h2>
       <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="resume.html" aria-current="page">Resume</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><strong>Name:</strong> Daniel Hopper</li>
+        <li><strong>Email:</strong> <a href="mailto:daniel.g.hopper@gmail.com">daniel.g.hopper@gmail.com</a></li>
+        <li><strong>Phone:</strong> <a href="tel:+16262536588">(626) 253-6588</a></li>
+        <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/reppohopper" target="_blank" rel="noopener">linkedin.com/in/reppohopper</a></li>
+        <li><strong>Location:</strong> Seattle, WA (Remote)</li>
       </ul>
-    </nav>
-  </header>
-
-  <main>
-    <h1>Resume</h1>
-    <p><a href="assets/Daniel-Hopper-Resume.pdf" download role="button">Download PDF</a></p>
-
-    <section>
-      <h2>Professional Summary</h2>
-      <p>Software engineer and game developer with experience building prototypes and tools in Unity, Go, and modern web technologies. Focused on shipping practical solutions, clear documentation, and improving developer workflows.</p>
     </section>
 
-    <section>
+    <!-- Summary -->
+    <section aria-label="Professional summary">
+      <h2>Professional Summary</h2>
+      <p>
+        Self-starting creator of high-impact software solutions. Expanded from an IT services team
+        leader role into designing and delivering business organization and automation solutions at a
+        global scale. Experienced in presenting tools and processes to both technical and
+        non-technical stakeholders, gathering requirements, and incorporating feedback into
+        iterative improvements.
+      </p>
+    </section>
+
+    <!-- Experience -->
+    <section aria-label="Professional experience">
+      <h2>Experience</h2>
+
+      <article>
+        <header>
+          <h3>Astreya Partners, Inc. — Software Developer II</h3>
+          <p><em>Remote, WA · Feb 2024 – Oct 2024</em></p>
+        </header>
+        <ul>
+          <li>
+            Secured contracts to extend Astreya’s coverage with Google by 80% in the US and 100% in
+            Europe by demonstrating a deployment process that reduced overall cost.
+          </li>
+          <li>
+            Designed, built, and maintained integrated efficiency tools for non-technical operators
+            using Google Apps Script and BigQuery as the sole engineer on the project.
+          </li>
+          <li>
+            Created an onboarding process and trained five operators to support ongoing operations.
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <header>
+          <h3>Astreya Partners, Inc. — Inventory Technician Team Lead</h3>
+          <p><em>Seattle, WA · Jan 2019 – Feb 2024</em></p>
+        </header>
+        <ul>
+          <li>
+            Led a team of 5–10 technicians on-site and was responsible for all IT services for the
+            site.
+          </li>
+          <li>
+            Fostered a team environment that emphasized autonomous participation, ownership, and
+            continuous improvement.
+          </li>
+          <li>
+            Initiated large-scale business automation beginning in early 2020 to reduce manual work
+            and errors.
+          </li>
+          <li>
+            Created over 200,000 new hire work orders since Feb 2021, representing more than 7% of
+            the total historical workforce.
+          </li>
+          <li>
+            Designed, built, and maintained a real-time shipping order ticket creation tool for
+            Google’s global remote onboarding hardware deployment process, eradicating manual errors
+            and removing onboarding delays for ~5% of customers.
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <header>
+          <h3>Astreya Partners, Inc. — Inventory Technician</h3>
+          <p><em>Seattle, WA · Jul 2017 – Dec 2018</em></p>
+        </header>
+        <ul>
+          <li>
+            Performed face-to-face troubleshooting and prioritized clear communication and customer
+            satisfaction alongside problem resolution.
+          </li>
+          <li>
+            Built and maintained broad domain knowledge of available technologies and responsible
+            teams to accelerate issue routing and resolution.
+          </li>
+          <li>
+            Created macros and scripts that decreased workload by approximately eight hours per week
+            per technician.
+          </li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- Skills -->
+    <section aria-label="Skills">
       <h2>Skills</h2>
       <ul>
-        <li>Languages: C#, Go, JavaScript, Python</li>
-        <li>Tools & Frameworks: Unity, Git, Docker, HTML/CSS</li>
-        <li>Areas: Gameplay systems, tooling, backend utilities</li>
+        <li>
+          <strong>Programming:</strong> JavaScript, SQL, React.js, Node.js, Java, Python
+        </li>
+        <li>
+          <strong>Tools & Platforms:</strong> GitHub, Docker, SAP, Figma, Google Data Studio
+        </li>
+        <li>
+          <strong>Strengths:</strong> Process automation, data-driven tooling, cross-functional
+          collaboration, technical presentations.
+        </li>
       </ul>
     </section>
 
-    <section>
-      <h2>Experience (Selected)</h2>
-      <p><strong>Independent Developer</strong> — Personal projects and prototypes (Dates)</p>
-      <ul>
-        <li>Designed and implemented multiple prototypes in Unity to validate gameplay and movement.</li>
-        <li>Built a cross-platform CLI tool in Go for snippet expansion and automation.</li>
-      </ul>
-    </section>
-
-    <section>
+    <!-- Education -->
+    <section aria-label="Education">
       <h2>Education</h2>
-      <p><strong>Computer Science coursework</strong> — Relevant courses: data structures, algorithms, systems programming.</p>
+      <article>
+        <h3>Bachelor of Arts, English Literature</h3>
+        <p><em>Azusa Pacific University · 2016</em></p>
+      </article>
+
+      <article>
+        <h3>Computing & Software Development, AAS-T</h3>
+        <p><em>Lake Washington Institute of Technology · Currently enrolled, Dean’s List</em></p>
+      </article>
     </section>
+    <h2>Standard Format PDF</h2>
+    <p>
+      <a href="assets/Daniel-Hopper-Resume.pdf" download role="button">
+        Download PDF
+      </a>
+    </p>
   </main>
 
-  <footer style="max-width:960px;margin:2rem auto 0;color:#6b7280;"><small>&copy; <span id="year"></span> Daniel Hopper</small></footer>
+  <footer style="max-width:960px;margin:2rem auto 0;color:#6b7280;">
+    <small>&copy; <span id="year"></span> Daniel Hopper</small>
+  </footer>
   <script src="assets/js/main.js"></script>
-  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="assets/js/header.js"></script>
 </body>
 </html>
