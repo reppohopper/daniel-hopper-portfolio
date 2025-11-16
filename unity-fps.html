@@ -25,25 +25,92 @@
 
   <main>
     <h1>Unity FPS Prototype</h1>
-    <p><strong>Role:</strong> Prototype lead · <strong>Tech:</strong> Unity (C#)</p>
+    <h2>Overview</h2> 
 
-    <h2>Overview</h2>
-    <p>Small prototype focused on validating player feel and basic AI encounters. Includes modular player controller, simple cover-aware AI, and small test levels for tune iterations.</p>
+    <p><strong>Technology: </strong>Built in Unity/C#</p>    
+    <p><strong>My role: </strong>Structured solo project for LWTech game programming course</p>
+
+    <p><strong>Description: </strong>Small prototype focused on achieving a complete level a playable game loop. Features enemies, obstacles, HP and ammo recovery items, and win and lose conditions. </p>
+
+    <section class="image-grid">
+      <figure class="image-grid-item">
+        <img src="assets/thumb-1.png"
+             alt="Unity FPS prototype — view of items">
+        <figcaption>Collectible ammo and HP items.</figcaption>
+      </figure>
+    
+      <figure class="image-grid-item">
+        <img src="assets/fps_clip_2.gif"
+             alt="Unity FPS prototype — Maze zone / triforce glimpse">
+        <figcaption>Maze zone and a glimpse of the triforce (win condition).</figcaption>
+      </figure>
+    
+      <figure class="image-grid-item">
+        <img src="assets/fps_clip_1.gif"
+             alt="Unity FPS prototype — facing enemies in the first zone">
+        <figcaption>Player faces enemies in the game's first zone.</figcaption>
+      </figure>
+
+      <figure class="image-grid-item">
+        <img src="assets/fps-you-died.png"
+             alt="Unity FPS prototype — final section of the level">
+        <figcaption>Clearly displayed restart option for minimum user interruption.</figcaption>
+      </figure>
+    </section>
+    
 
     <h2>Technical Implementation</h2>
     <ul>
-      <li>Player controller with configurable acceleration, friction, and head bob parameters.</li>
-      <li>AI using navigation meshes with behavior trees for simple state-driven actions (patrol, chase, search).</li>
-      <li>Level flow uses scriptable objects to configure spawn waves and objectives.</li>
+      <li>Unity Engine GUI for 3D objcet/asset design, C# MonoBehavior scripts for player/enemy behavior and game logic. </li>
+      <li>Direct input management: WASD movement controls, mouse to look up, down, or turn. Click to shoot.</li>
+      <li>Player controller with configurable elements like movement speed, fire rate, and projectile speed.</li>
+      <li>Enemy controllers with variable health, sight/shoot distance, agro distance, and defined patrolling behavior.</li>
+      <li>Level flow including distinct sections of different atmostphere and increasing difficulty.</li>
+      <li>HP and ammo recovery items drop on enemy defeat.</li>
+      <li>Interaction of these elements are calibrated to make an interesting, moderately challenging game.</li>
+      <li>Intuitive "Game over" messaging with easy restart.</li>
     </ul>
 
-    <h2>Challenges & Solutions</h2>
-    <p>Tuning player feel across input devices—solved by exposing multiple parameters and logging telemetry during playtests to find balanced defaults.</p>
+    <h2>Key Functionality Code Snippet</h2>
+    <p>The following code is just a small section of the <a href="https://github.com/reppohopper/unity-fps-prototype/blob/main/PlayerController.cs" target="_blank" rel="noopener">Player Controller script</a>, handling the response to the player taking damage and demonstrating the modular, method-based nature of the script.</p>
+    <pre class="code-snippet"><code> public void PlayerTakesDamage(int damage) 
+      {
+          // Reduce player health
+          playerHealth = Math.Max(playerHealth - damage, 0); // Can't fall below zero. 
+          
+          // Update display health. 
+          healthText.text = "HP: " + playerHealth.ToString() + " / " + playerMaxHealth.ToString();
+  
+          // Check to see if we are dead
+          if (playerHealth <= 0) {
+              gameOverText.SetActive(true);
+              restartText.SetActive(true);
+              SimulateFreezingTheGame();
+          }
+      }
+
+      // Method to simulate Freezing the Game 
+      public void SimulateFreezingTheGame() 
+      {
+              rotationSensitivity = 0f;
+              verticalRotationSensitivity = 0f;
+              ammoCount = 0; // Falsely remove all ammo to prevent final shot. 
+              Time.timeScale = 0f;
+      }
+    </code></pre>
+    <p>Full project code is available at the <a href="https://github.com/reppohopper/unity-fps-prototype" target="_blank" rel="noopener">GitHub repo</a>.</p>
+
+    <h2>Challenges Faced & Solutions</h2>
+    <p>The challenge here was to balance my excitement about the project's potential with the reality of the project being due on a deadline, and being just one of many competing academic and persona priorities. It was a great learning experience as I discovered efficient means of for threading this divide. <p>
+    <p>I focused on maximum code modularity and reusability, separating "looking", "moving", and "attack" functionalities so I could re-use them piecemeal for the player controller, the enemies, and the stationary turrets. Similarly, assets like the turret towers and cover obstacles made use of mirroring for quick duplication and re-use while looking rough and natural. 
+    <p>As a result of focusing on features I could find a way to ship quickly, I shipped a game that stood out as excellent in the class final presentation.</p>
 
     <h2>Future Enhancements</h2>
+    <p>The things I most wanted to do next to elevate the gameplay were...<p>
     <ul>
-      <li>Polish movement interpolation and add weapon recoil/haptics.</li>
-      <li>Integrate networked multiplayer stub for basic sync testing.</li>
+      <li>Slight enemy strafing if they take damage or are attacking: "bob and weave".</li>
+      <li>Red screen flash to indicate player taking damage.</li>
+      <li>Sounds for damage, firing, item collection game over, and win.</li>
     </ul>
 
     <p><a href="projects.html">&larr; Back to Projects</a></p>

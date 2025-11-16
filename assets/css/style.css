@@ -88,3 +88,44 @@ a { color: var(--primary); }
   border-radius: 0.5rem;
   object-fit: cover;
 }
+
+
+
+
+
+/* For the image grid on Project pages  */
+.image-grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+/* 3 per row on wider screens */
+@media (min-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Nice card-ish presentation */
+.image-grid-item {
+  /* background: var(--pico-background-elevated, #f9fafb); */
+  /* border:#3b3b3b 1px solid; */
+  border-radius: 0.75rem;
+  /* padding: 0.75rem;*/
+}
+
+/* Make images fill their cell and stay consistent size */
+.image-grid-item img {
+  width: 100%;
+  aspect-ratio: 16 / 9;      /* change to 1 / 1 if you want perfect squares */
+  object-fit: cover;
+  border-radius: 0.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+ 
+.image-grid-item figcaption {
+  font-size: 0.8rem;
+  color: #999999;
+}
