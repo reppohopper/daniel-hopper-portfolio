@@ -24,46 +24,95 @@
   </header>
 
   <main>
-
-    <h1> Page in progress, to be complete by Nov 18 </h2>
-    <p>The Unity FPS prototype page is more polished.</p>
-    <!--
     <h1>Go Text Expander</h1>
-    <p><strong>Role:</strong> Solo developer · <strong>Tech:</strong> Go</p>
 
-    <h2>Overview</h2>
-    <p>Go Text Expander is a cross-platform command-line utility that expands user-defined snippets from a YAML configuration. The goal is a single small binary with predictable behavior across platforms and minimal external dependencies.</p>
+    <p><strong>Technology: </strong>Go Programming Language, JSON connector to Google Sheets</p>    
+    <p><strong>My role: </strong>Sole designer and developer</p>
+    <p><strong>Description: </strong>Go Text Expander is a text expansion productivity tool written in Golang. It captures keyboard input, matches specific patterns (like /shortcut*), and expands them into predefined longer texts. </p>
 
     <h2>Problem & Objectives</h2>
-    <p>Many text expansion tools are platform-specific or require privileged background services. This tool aims to give developers a simple, portable way to expand snippets inside terminals and scripts with an easy config format.</p>
+    <p>My IT team at Google used a program called TextExpander for customer service tickets. When Google suddenly dropped TextExpander from its list of approved third-party software, it was an enormous setback for many of us who depended on it. This motivated me to build an alternative from scratch.</p>
 
+    <section class="image-grid">
+      <figure class="stanadlone-image-grid-item">
+        <img src="assets/text-expansions.png"
+             alt="An image showing how each shortcut maps to its respective larger sentence of text.">
+        <figcaption>In this lightweight app, shortcuts used the convention of starting with "/" and ending with "q" (as only incredibly rare english words do). This minimizes unintended expansions in the course of ordinary typing.</figcaption>
+      </figure>
+    
+      <figure class="stanadlone-image-grid-item">
+        <img src="assets/go-text-expander-thumb.gif"
+        alt="Demo gif of a user of the Go Text Expander App expaning short phrases into long snippets in an IT customer service setting.">
+        <figcaption>Expansions occur here in a text-edit file, but the program will run anywhere the user can place their cursor.</figcaption>
+      </figure>
+
+      <figure class="stanadlone-image-grid-item">
+        <img src="assets/sheets-expansions.png"
+        alt="Google sheet dictionary of expansions">
+        <figcaption>Replacements are defined in Google Sheets, creating a synced dictionary for easy availability across devices.</figcaption>
+      </figure>
+    </section>
+    
     <h2>Technical Implementation</h2>
     <ul>
-      <li>Single binary built with Go for Windows/macOS/Linux support.</li>
-      <li>Config parsing using YAML; snippet tokens replaced with content, supporting placeholders and simple transforms.</li>
-      <li>Safe IO handling with explicit tests for edge cases (unicode, newline normalization).</li>
+      <li>Monitors keyboard input in every environment, enabling expansions everywhere a user can place the cursor.</li>
+      <li>Uses the clipboard to perform rapid text replacement fast enough to never interrupt typing flow. </li>
+      <li>Employs circle buffer for memory efficiency and performance.</li>
+      <li>Connects to cloud-synced dictionary.</li>
+      <li>Easy startup and shutdown through the command line.</li>
     </ul>
+    
+    <h2>Key Functionality Code Snippet</h2>
+    <p>The following code manages recieving input from a specific keyboard type, with a decision tree of max depth 4, performing far better than a switch statment.</p>
+    <p>This could be further improved at the cost of a little memory by simply using an array of length 256 and direct lookups. Nonetheless, it takes efficient advantage of condinuous blocks of encoding present in the ASCII format to use almost no memory.</p>
 
-    <h2>Key Code Snippet</h2>
-    <pre class="code-snippet"><code>// example snippet expansion (conceptual)
-func expandSnippet(tmpl string, vars map[string]string) string {
-    // naive placeholder replacement
-    for k, v := range vars {
-        tmpl = strings.ReplaceAll(tmpl, "{{"+k+"}}", v)
-    }
-    return tmpl
+    <pre class="code-snippet"><code>// Features a special lookup table for the ErgoDox EZ keyboard
+func getErgodoxChar(vkCode uint, isShiftPressed bool) byte {
+
+	var shiftAdd uint = 0
+	if isShiftPressed {
+		shiftAdd = 50
+	}
+
+	if vkCode >= 65 {
+		if vkCode <= 90 {
+			return ergodoxAsciiTable[vkCode-54+shiftAdd]
+		} else {
+			if vkCode >= 186 && vkCode <= 222 {
+				if vkCode <= 192 {
+					return ergodoxAsciiTable[vkCode-149+shiftAdd]
+				} else {
+					return ergodoxAsciiTable[vkCode-175+shiftAdd]
+				}
+			}
+		}
+	} else {
+		if vkCode == 32 {
+			return ergodoxAsciiTable[0] // don't bother with shiftAdd
+		} else {
+			if vkCode >= 48 && vkCode <= 57 {
+				return ergodoxAsciiTable[vkCode-47+shiftAdd]
+			}
+		}
+	}
+
+	return 0
 }
     </code></pre>
+    <p>Full project code is available at the <a href="https://github.com/reppohopper/Go_Text_Expander" target="_blank" rel="noopener">GitHub repo</a>.</p>
 
     <h2>Challenges & Solutions</h2>
-    <p>Handling platform-specific clipboard and key events was out of scope; the solution focuses on piping and file-backed workflows that work reliably in automation contexts.</p>
+    <p>A tough aspect of this program was my lack of familiarity with the Go Programming language and byte-level memory management. LLMs were new on the public scene, and I used Chat GPT-3 to assist my learning of GoLang for this project by asking it to convert my functioning JavaScript into Go. I also asked it for explinations, line by line, of anything I didn't undestand. This way I was gradnaully able to build an app that I thoroughly understood, and learned a lot about Go on the way!</p>
 
-    <h2>Future Enhancements</h2>
+    <h2>Results & Impact</h2>
+    <p>This app was able to restore my efficiency and get me back on track at work. I learned that it can be easier to fix problems proactively instead of waiting for official solutions. I also learned that I find it very fulfilling to be able to solve people’s practical problems. </p>
+
+    <h2>Possible Future Enhancements</h2>
+    <p>The follwoing were features in the app that inspired this project that I most missed while using the Go Text Expander.</p>
     <ul>
-      <li>Optional daemon mode with secure clipboard integration.</li>
-      <li>Snippet sharing and versioned configs.</li>
+      <li>Application GUI for easy snippet editing.</li>
+      <li>Fill-in fiedls where a template would allow users to fill in only small missing peices of expanded paragraphs.</li>
     </ul>
-    -->
 
     <p><a href="projects.html">&larr; Back to Projects</a></p>
   </main>

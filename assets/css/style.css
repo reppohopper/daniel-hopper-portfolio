@@ -124,6 +124,16 @@ a { color: var(--primary); }
   display: block;
   margin-bottom: 0.5rem;
 }
+.stetch-to-fit {
+  display: block;
+}
+
+.stanadlone-image-grid-item img {
+  object-fit: cover;
+  border-radius: 0.5rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
 
 .image-grid-item-square img {
   width: 100%;
