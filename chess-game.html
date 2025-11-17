@@ -24,54 +24,88 @@
   </header>
 
   <main>
-    <h1> Page in progress, to be complete by Nov 18 </h2>
-    <p>The Unity FPS prototype page is more polished.</p>
-    <!--
+
     <h1>Chess Game</h1>
-    <p><strong>Role:</strong> Solo developer · <strong>Tech:</strong> JavaScript, HTML5 Canvas</p>
-    <p>
-      A web-based chess prototype focused on approachable UI and experimenting with AI heuristics that balance performance and quality of moves for casual play.
-    </p>
 
+    <p><strong>Technology: </strong>JavaScript, PIXI.js (2D JS Graphics Rendering Library)</p>    
+    <p><strong>My role: Sole designer and developer</strong></p>
+    <p><strong>Description: </strong>A web-based chess prototype which correctly allows all possible legal moves for any board state. <a href="projects.html">Try it out!</a></p>
+
+    <section class="image-grid">
+      <figure class="image-grid-item-square">
+        <img src="assets/chess-thumb.png"
+             alt="A chess queen is highlighted and its set of possible moves are displayed with yellow circles and dots.">
+        <figcaption>Highlighting of possible move and attack options.</figcaption>
+      </figure>
+    
+      <figure class="image-grid-item-square">
+        <img src="assets/chess-execution-times.png"
+             alt="The web tools cosnole shows 0-2ms exectution times after each move, and how moves trigger updates in between 2-8 related pieces.">
+        <figcaption>Moves trigger updates in 2-8 affected pieces (rather than all 16), and execution time is kept between 0-3 milliseconds on each move.</figcaption>
+      </figure>
+    </section>
+    
     <h2>Problem & Objectives</h2>
-    <p>The goal was to create a lightweight chess client that runs entirely in the browser, providing a responsive UI and an AI opponent with configurable depth and heuristics. Objectives: fast move generation, clear board visuals, and a friendly UX for new players.</p>
-
+    <p>I needed a way to demonstrate the kind of complex, modular, logic-heavy JavaScript that I was performing at work in proprietatry codebases. In this 2023 project, I created a complete chess engine in JavaScript with a graphical user interface to run in the browser. It was also a chance to deep dive into chess programming logic without referencing any external implementations.</p>
+    
     <h2>Technical Implementation</h2>
     <ul>
-      <li>Engine: Minimax search with alpha-beta pruning implemented in JS for client-side play.</li>
-      <li>Rendering: HTML5 Canvas for efficient board redraws and animated piece movement.</li>
-      <li>State: Immutable move history to enable undo/redo and simple replay.</li>
+      <li>Modularity: IIFE-based modules-by-closure, runs anywhere without CommonJS or ESmodules</li>
+      <li>Performance: Computes all possible moves in range 0ms-3ms even in complex board states through relational logic.</li>
+      <li>Correctly tracks whose turn it is, all check states, and accounts for all chess rules, such as en passant, castling, and pawn promotion. </li>
+      <li>Handle obscure accumulating states like en pessant, threefold repetition draw rule, and the 50-move draw rule. </li>
     </ul>
-
-    <h2>Challenges & Solutions</h2>
-    <p>Performance at deeper search depths in JS—addressed by iterative deepening and move-order heuristics. Another challenge was designing a clear, non-intimidating UI; solved by simplifying legal move highlights and offering a practice mode that suggests moves.</p>
-
-    <h2>Key Code Snippet</h2>
-    <pre class="code-snippet"><code>// Simple alpha-beta outline (illustrative)
-function alphaBeta(node, depth, alpha, beta, maximizingPlayer) {
-  if (depth === 0 || node.isTerminal()) return evaluate(node);
-  let moves = node.generateMoves();
-  for (let m of moves) {
-    node.apply(m);
-    let score = -alphaBeta(node, depth-1, -beta, -alpha, !maximizingPlayer);
-    node.undo(m);
-    if (score >= beta) return beta;
-    if (score > alpha) alpha = score;
-  }
-  return alpha;
-}
+    
+    <h2>Key Functionality Code Snippet</h2>
+    <p>The following code is just a small section of the <a href="https://github.com/reppohopper/chess_game/blob/main/chess_engine_mbc/king_threat_functions.js" target="_blank" rel="noopener">King Threat Function Module</a>, by which the program checks a variety of conditions after each move to see if the enemy king has fallen into check. Kings are visualized as "spiders" that can be threatened along many separate "strands". </p>
+    <p>This code demonstrates a module system implemented with IIFEs, and shows how the possible actions and states of many other piece types need to be considered with each move.  </p>
+    <pre class="code-snippet"><code>
+      exports.add_to_threat_web_register = function (color_char, id, direction, m) {
+        if (
+            // If it is an enemy piece ...
+            color_char !== id[0]
+            && (
+                // ... and it's a queen, 
+                id[1] === "q" // "q" for queen
+                // ... or a bishop on a diagonal, or a rook on a straight ...
+                || (direction.length === 2 && id[1] === "b") // "b" for bishop
+                || (direction.length === 1 && id[1] === "r") // "r" for rook
+            )
+        ) {
+            // Enter check state. 
+            m.meta_data.check_state = color_char; // Idempotent. 
+            // Add to the direct threats object, if it isn't there already
+            if (!exports.kings[color_char].direct_threats.includes(id)) {
+                exports.kings[color_char].direct_threats.push(id);
+            }
+        }
+        // Add to the general register of pieces that will need a callback when 
+        // the king-spider moves and thereby moves the whole web. 
+        exports.kings[color_char].strand_register[direction] = id;
+    }
     </code></pre>
+    <p>Full project code is available at the <a href="https://github.com/reppohopper/chess_game/tree/main/chess_engine_mbc" target="_blank" rel="noopener">GitHub repo</a>.</p>
 
-    <h2>Results & Impact</h2>
-    <p>Usable, compact web demo that runs comfortably at shallow search depths on mobile and desktop. Good baseline for later server-side engine integration.</p>
+    <h2>Learning Points</h2>
+    <p><strong>The importance of going deep to learn something. </strong></p>
+    <p>I learned that going deep into something we seem to know well can often expose a world of unexpected complexities. I was surprised to find that even a highly structured and logical rule set that is easily comprehensible by humans can nonetheless be fiendishly difficult to program into a computer. </p>
+    <p><strong>The motivating value of working in an area you are passionate about. </strong></p>
+    <p>This project taught me that being passionate about and deeply interested in a topic can carry me through a lot of laborious work and difficult obstacles. </p>
 
-    <h2>Future Enhancements</h2>
+    <h2>Potential Enhancements</h2>
+    <p>The things I most wanted to do next to elevate the project were...<p>
+
     <ul>
-      <li>Connect to a stronger engine server-side (Stockfish) for advanced play.</li>
-      <li>Save/load PGN; add puzzles and training modes.</li>
+      <li>Add much clearer messaging around whose turn it is, and states like move, check, and game end. </li>
+      <li>Add sounds to assist with this clarity. </li>
+      <li>Full move history panel in chess notation. </li>
+      <li>Improve the incredibly basic UI to have more balanced and attractive color scheme, and center and flex in the browser. </li>
+      <li><strong>Later: </strong>Enable online play by generaitng private URLs for invite-based games. </li>
     </ul>
 
-    --> 
+    <h2>Results and Regrets</h2>
+    <p>This was my first project on GitHub and it was a strong learning experience, but not without regret. This project proved to me that I can achieve and ship code that meets difficult objectives and high performance standards as a solo engineer. At the same time, I regret spending so much energy reinventing the wheel, and so I'll focus energy in future coding projects trying to solve novel problems that I can't find ready libraries for on the internet.</p>
+
     <p><a href="projects.html">&larr; Back to Projects</a></p>
   </main>
 
